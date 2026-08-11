@@ -24,13 +24,13 @@ export default function MateriPage() {
     })();
   }, [user]);
 
-  if (loading) return <p className="text-center text-slate-400 py-16">Memuat...</p>;
+  if (loading) return <p className="text-center text-slate-400 dark:text-slate-500 py-16">Memuat...</p>;
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Materi Edukasi</h1>
-        <p className="text-slate-500 mt-1">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Materi Edukasi</h1>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
           Pelajari dasar-dasar diabetes melitus dengan bahasa sederhana.
         </p>
       </div>
@@ -54,8 +54,8 @@ export default function MateriPage() {
                     🖼️ Infografis
                   </span>
                 )}
-                <h3 className="font-semibold text-slate-800 mt-2">{m.judul}</h3>
-                <p className="text-sm text-slate-500 mt-1">{m.ringkasan}</p>
+                <h3 className="font-semibold text-slate-800 dark:text-slate-100 mt-2">{m.judul}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">{m.ringkasan}</p>
               </Card>
             </Link>
           );

@@ -64,13 +64,13 @@ export default function AdminUsersList() {
     }
   }
 
-  if (loading) return <p className="text-slate-400 text-sm">Memuat...</p>;
+  if (loading) return <p className="text-slate-400 dark:text-slate-500 text-sm">Memuat...</p>;
 
   if (error) {
     return (
       <Card>
         <p className="text-sm text-rose-600 font-medium">{error}</p>
-        <p className="text-xs text-slate-400 mt-2">
+        <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
           Kemungkinan file <code>supabase/migration_kelola_user.sql</code> belum dijalankan
           di Supabase SQL Editor.
         </p>
@@ -80,7 +80,7 @@ export default function AdminUsersList() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-500">{users.length} user terdaftar</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500">{users.length} user terdaftar</p>
 
       <div className="space-y-2">
         {users.map((u) => {
@@ -90,20 +90,20 @@ export default function AdminUsersList() {
               <div className="flex items-start justify-between gap-3 flex-wrap">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="font-semibold text-slate-800">{u.nama || "(tanpa nama)"}</p>
+                    <p className="font-semibold text-slate-800 dark:text-slate-100">{u.nama || "(tanpa nama)"}</p>
                     {u.role === "admin" && (
                       <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">
                         Admin
                       </span>
                     )}
                     {isSelf && (
-                      <span className="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">
+                      <span className="text-xs bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 dark:text-slate-500 px-2 py-0.5 rounded-full">
                         Kamu
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-slate-500">{u.email}</p>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500">{u.email}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                     {u.poin_total} poin · {u.materi_selesai} materi selesai · skor kuis terbaik {u.skor_terbaik}% · daftar {new Date(u.created_at).toLocaleDateString("id-ID")}
                   </p>
                 </div>

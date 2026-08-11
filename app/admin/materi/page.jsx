@@ -24,7 +24,7 @@ export default function AdminMateriList() {
     muat();
   }
 
-  if (loading) return <p className="text-slate-400 text-sm">Memuat...</p>;
+  if (loading) return <p className="text-slate-400 dark:text-slate-500 text-sm">Memuat...</p>;
 
   return (
     <div className="space-y-4">
@@ -39,7 +39,7 @@ export default function AdminMateriList() {
 
       <div className="space-y-2">
         {list.length === 0 && (
-          <p className="text-sm text-slate-400 text-center py-8">Belum ada materi.</p>
+          <p className="text-sm text-slate-400 dark:text-slate-500 text-center py-8">Belum ada materi.</p>
         )}
         {list.map((m) => (
           <Card key={m.id} className="flex items-center justify-between">
@@ -47,8 +47,8 @@ export default function AdminMateriList() {
               <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
                 {m.kategori}
               </span>
-              <h3 className="font-semibold text-slate-800 mt-1">{m.judul}</h3>
-              <p className="text-xs text-slate-400 mt-0.5">slug: {m.slug}</p>
+              <h3 className="font-semibold text-slate-800 dark:text-slate-100 mt-1">{m.judul}</h3>
+              <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">slug: {m.slug}</p>
             </div>
             <div className="flex gap-2 shrink-0">
               <Link

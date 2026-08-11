@@ -65,7 +65,7 @@ export default function KuisPage() {
     setShowPenjelasan(false);
   }
 
-  if (loading) return <p className="text-center text-slate-400 py-16">Memuat soal...</p>;
+  if (loading) return <p className="text-center text-slate-400 dark:text-slate-500 py-16">Memuat soal...</p>;
 
   if (step === 0) {
     return (
@@ -82,8 +82,8 @@ export default function KuisPage() {
         >
           🧠
         </motion.div>
-        <h1 className="text-2xl font-bold text-slate-900">Kuis Pengetahuan Diabetes</h1>
-        <p className="text-slate-500">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Kuis Pengetahuan Diabetes</h1>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500">
           {soalKuis.length} pertanyaan seputar penyebab, pola makan, aktivitas fisik,
           dan manajemen stres. Setiap jawaban benar = +5 poin.
         </p>
@@ -112,7 +112,7 @@ export default function KuisPage() {
         >
           {persenHasil >= 70 ? "🎉" : "💪"}
         </motion.div>
-        <h1 className="text-2xl font-bold text-slate-900">Kuis Selesai!</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Kuis Selesai!</h1>
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
           <Card>
             <motion.p
@@ -123,7 +123,7 @@ export default function KuisPage() {
             >
               {persenHasil}%
             </motion.p>
-            <p className="text-slate-500 mt-1">
+            <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
               {jumlahBenar} dari {soalKuis.length} jawaban benar
             </p>
             <p className="text-sm text-amber-600 font-medium mt-2">
@@ -156,7 +156,7 @@ export default function KuisPage() {
   return (
     <div className="max-w-xl mx-auto space-y-5">
       <div>
-        <p className="text-xs text-slate-500 mb-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-1">
           Soal {step} dari {soalKuis.length}
         </p>
         <ProgressBar value={step - 1} max={soalKuis.length} color="bg-amber-500" />
@@ -174,20 +174,20 @@ export default function KuisPage() {
             <motion.h2
               animate={showPenjelasan && !jawabanBenarSaatIni ? { x: [0, -8, 8, -8, 0] } : {}}
               transition={{ duration: 0.4 }}
-              className="font-semibold text-slate-800 text-lg"
+              className="font-semibold text-slate-800 dark:text-slate-100 text-lg"
             >
               {soalAktif.pertanyaan}
             </motion.h2>
             <div className="mt-4 space-y-2">
               {soalAktif.pilihan.map((p, idx) => {
-                let style = "border-slate-200 hover:border-emerald-300";
+                let style = "border-slate-200 dark:border-slate-700 hover:border-emerald-300";
                 if (showPenjelasan) {
                   if (idx === soalAktif.jawaban_benar) {
                     style = "border-emerald-500 bg-emerald-50";
                   } else if (idx === pilihanTerpilih) {
                     style = "border-rose-400 bg-rose-50";
                   } else {
-                    style = "border-slate-200 opacity-60";
+                    style = "border-slate-200 dark:border-slate-700 opacity-60";
                   }
                 }
                 const isCorrectAnswer = showPenjelasan && idx === soalAktif.jawaban_benar;
@@ -214,7 +214,7 @@ export default function KuisPage() {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="mt-4 p-3 rounded-lg bg-slate-50 text-sm text-slate-600 overflow-hidden"
+                  className="mt-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800 text-sm text-slate-600 dark:text-slate-300 overflow-hidden"
                 >
                   💡 {soalAktif.penjelasan}
                 </motion.div>

@@ -16,12 +16,12 @@ export default function MateriEdit() {
     });
   }, [params.id]);
 
-  if (loading) return <p className="text-slate-400 text-sm">Memuat...</p>;
-  if (!data) return <p className="text-slate-400 text-sm">Materi tidak ditemukan.</p>;
+  if (loading) return <p className="text-slate-400 dark:text-slate-500 text-sm">Memuat...</p>;
+  if (!data) return <p className="text-slate-400 dark:text-slate-500 text-sm">Materi tidak ditemukan.</p>;
 
   return (
     <div>
-      <h2 className="font-semibold text-slate-700 mb-4">Edit Materi</h2>
+      <h2 className="font-semibold text-slate-700 dark:text-slate-300 mb-4">Edit Materi</h2>
       <MateriForm initialData={data} materiId={params.id} />
     </div>
   );

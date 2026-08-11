@@ -68,7 +68,7 @@ export default function TrackerPage() {
     setAktivitasList(aktivitasList.filter((a) => a.id !== id));
   }
 
-  if (loading) return <p className="text-center text-slate-400 py-16">Memuat...</p>;
+  if (loading) return <p className="text-center text-slate-400 dark:text-slate-500 py-16">Memuat...</p>;
 
   const totalMenit = aktivitasList.reduce((sum, a) => sum + (a.durasi_menit || 0), 0);
 
@@ -80,18 +80,18 @@ export default function TrackerPage() {
   return (
     <div className="space-y-6 max-w-xl">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Tracker Harian</h1>
-        <p className="text-slate-500 mt-1">Catat pola makan dan aktivitas fisikmu setiap hari.</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Tracker Harian</h1>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">Catat pola makan dan aktivitas fisikmu setiap hari.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <Card className="text-center">
           <p className="text-xl font-bold text-sky-600">{makanList.length}</p>
-          <p className="text-xs text-slate-500">Entri Makan</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">Entri Makan</p>
         </Card>
         <Card className="text-center">
           <p className="text-xl font-bold text-emerald-600">{totalMenit} mnt</p>
-          <p className="text-xs text-slate-500">Total Aktivitas</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">Total Aktivitas</p>
         </Card>
       </div>
 
@@ -99,7 +99,7 @@ export default function TrackerPage() {
         <button
           onClick={() => setTab("makan")}
           className={`px-4 py-2 rounded-lg text-sm font-medium ${
-            tab === "makan" ? "bg-sky-600 text-white" : "bg-slate-100 text-slate-600"
+            tab === "makan" ? "bg-sky-600 text-white" : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
           }`}
         >
           🍽️ Pola Makan
@@ -107,7 +107,7 @@ export default function TrackerPage() {
         <button
           onClick={() => setTab("aktivitas")}
           className={`px-4 py-2 rounded-lg text-sm font-medium ${
-            tab === "aktivitas" ? "bg-emerald-600 text-white" : "bg-slate-100 text-slate-600"
+            tab === "aktivitas" ? "bg-emerald-600 text-white" : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
           }`}
         >
           🏃 Aktivitas Fisik
@@ -119,22 +119,22 @@ export default function TrackerPage() {
           <Card>
             <form onSubmit={tambahMakan} className="space-y-3">
               <div>
-                <label className="text-sm font-medium text-slate-600">Jenis</label>
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Jenis</label>
                 <select
                   value={formMakan.jenis}
                   onChange={(e) => setFormMakan({ ...formMakan, jenis: e.target.value })}
-                  className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+                  className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
                 >
                   {jenisMakanan.map((j) => <option key={j}>{j}</option>)}
                 </select>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">Apa yang kamu makan?</label>
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Apa yang kamu makan?</label>
                 <input
                   value={formMakan.deskripsi}
                   onChange={(e) => setFormMakan({ ...formMakan, deskripsi: e.target.value })}
                   placeholder="Contoh: Nasi merah, ayam bakar, sayur bayam"
-                  className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+                  className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
                 />
               </div>
               <button className="w-full bg-sky-600 text-white py-2.5 rounded-lg font-medium hover:bg-sky-700">
@@ -145,13 +145,13 @@ export default function TrackerPage() {
 
           <div className="space-y-2">
             {makanList.length === 0 && (
-              <p className="text-sm text-slate-400 text-center py-4">Belum ada catatan makan.</p>
+              <p className="text-sm text-slate-400 dark:text-slate-500 text-center py-4">Belum ada catatan makan.</p>
             )}
             {makanList.map((m) => (
               <Card key={m.id} className="flex items-center justify-between py-3">
                 <div>
-                  <p className="text-sm font-medium text-slate-700">{m.jenis} — {m.deskripsi}</p>
-                  <p className="text-xs text-slate-400">{formatTanggal(m.created_at)}</p>
+                  <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{m.jenis} — {m.deskripsi}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{formatTanggal(m.created_at)}</p>
                 </div>
                 <button onClick={() => hapusMakan(m.id)} className="text-slate-300 hover:text-rose-500 text-sm">✕</button>
               </Card>
@@ -165,24 +165,24 @@ export default function TrackerPage() {
           <Card>
             <form onSubmit={tambahAktivitas} className="space-y-3">
               <div>
-                <label className="text-sm font-medium text-slate-600">Jenis Aktivitas</label>
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Jenis Aktivitas</label>
                 <select
                   value={formAktivitas.jenis}
                   onChange={(e) => setFormAktivitas({ ...formAktivitas, jenis: e.target.value })}
-                  className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+                  className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
                 >
                   {jenisAktivitas.map((j) => <option key={j}>{j}</option>)}
                 </select>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-600">Durasi (menit)</label>
+                <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Durasi (menit)</label>
                 <input
                   type="number"
                   min="1"
                   value={formAktivitas.durasi}
                   onChange={(e) => setFormAktivitas({ ...formAktivitas, durasi: e.target.value })}
                   placeholder="Contoh: 30"
-                  className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+                  className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
                 />
               </div>
               <button className="w-full bg-emerald-600 text-white py-2.5 rounded-lg font-medium hover:bg-emerald-700">
@@ -193,13 +193,13 @@ export default function TrackerPage() {
 
           <div className="space-y-2">
             {aktivitasList.length === 0 && (
-              <p className="text-sm text-slate-400 text-center py-4">Belum ada catatan aktivitas.</p>
+              <p className="text-sm text-slate-400 dark:text-slate-500 text-center py-4">Belum ada catatan aktivitas.</p>
             )}
             {aktivitasList.map((a) => (
               <Card key={a.id} className="flex items-center justify-between py-3">
                 <div>
-                  <p className="text-sm font-medium text-slate-700">{a.jenis} — {a.durasi_menit} menit</p>
-                  <p className="text-xs text-slate-400">{formatTanggal(a.created_at)}</p>
+                  <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{a.jenis} — {a.durasi_menit} menit</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{formatTanggal(a.created_at)}</p>
                 </div>
                 <button onClick={() => hapusAktivitas(a.id)} className="text-slate-300 hover:text-rose-500 text-sm">✕</button>
               </Card>

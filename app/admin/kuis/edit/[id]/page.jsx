@@ -16,12 +16,12 @@ export default function SoalEdit() {
     });
   }, [params.id]);
 
-  if (loading) return <p className="text-slate-400 text-sm">Memuat...</p>;
-  if (!data) return <p className="text-slate-400 text-sm">Soal tidak ditemukan.</p>;
+  if (loading) return <p className="text-slate-400 dark:text-slate-500 text-sm">Memuat...</p>;
+  if (!data) return <p className="text-slate-400 dark:text-slate-500 text-sm">Soal tidak ditemukan.</p>;
 
   return (
     <div>
-      <h2 className="font-semibold text-slate-700 mb-4">Edit Soal</h2>
+      <h2 className="font-semibold text-slate-700 dark:text-slate-300 mb-4">Edit Soal</h2>
       <SoalForm initialData={data} soalId={params.id} />
     </div>
   );

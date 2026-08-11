@@ -30,12 +30,12 @@ export default function MateriDetail() {
     })();
   }, [user, params.slug]);
 
-  if (loading) return <p className="text-center text-slate-400 py-16">Memuat...</p>;
+  if (loading) return <p className="text-center text-slate-400 dark:text-slate-500 py-16">Memuat...</p>;
 
   if (!materi) {
     return (
       <div className="text-center py-16">
-        <p className="text-slate-500">Materi tidak ditemukan.</p>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Materi tidak ditemukan.</p>
         <Link href="/materi" className="text-emerald-600 font-medium">
           ← Kembali ke daftar materi
         </Link>
@@ -61,7 +61,7 @@ export default function MateriDetail() {
         <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
           {materi.kategori}
         </span>
-        <h1 className="text-2xl font-bold text-slate-900 mt-2">{materi.judul}</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{materi.judul}</h1>
       </div>
 
       {materi.video_url && (
@@ -80,7 +80,7 @@ export default function MateriDetail() {
               />
             ) : null}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition">
+              <div className="w-16 h-16 rounded-full bg-white/90 dark:bg-slate-700/90 flex items-center justify-center group-hover:scale-110 transition">
                 <div className="w-0 h-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-rose-600 ml-1" />
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function MateriDetail() {
       <Card>
         <div className="space-y-3">
           {(materi.konten || []).map((p, i) => (
-            <p key={i} className="text-slate-600 leading-relaxed">
+            <p key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed">
               {p}
             </p>
           ))}

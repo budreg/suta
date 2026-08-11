@@ -72,10 +72,10 @@ export default function SimulasiPage() {
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Simulasi Dampak Gaya Hidup</h1>
-        <p className="text-slate-500 mt-1">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Simulasi Dampak Gaya Hidup</h1>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
           Isi kondisi gaya hidupmu untuk melihat perkiraan tingkat risiko diabetes.
-          <span className="block text-xs text-slate-400 mt-1">
+          <span className="block text-xs text-slate-400 dark:text-slate-500 mt-1">
             *Ini simulasi edukatif, bukan diagnosis medis. Konsultasikan ke dokter untuk penilaian sebenarnya.
           </span>
         </p>
@@ -84,11 +84,11 @@ export default function SimulasiPage() {
       <div className="grid sm:grid-cols-2 gap-4">
         <Card className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-slate-600">Pola Makan</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Pola Makan</label>
             <select
               value={form.polaMakan}
               onChange={(e) => update("polaMakan", e.target.value)}
-              className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+              className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             >
               <option value="sehat">Sehat (banyak sayur, rendah gula)</option>
               <option value="cukup">Cukup (kadang tinggi gula/lemak)</option>
@@ -97,7 +97,7 @@ export default function SimulasiPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-slate-600">
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
               Aktivitas Fisik: {form.aktivitas} hari/minggu
             </label>
             <input
@@ -111,7 +111,7 @@ export default function SimulasiPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-slate-600">
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
               Rata-rata Tidur: {form.tidur} jam/hari
             </label>
             <input
@@ -127,11 +127,11 @@ export default function SimulasiPage() {
 
         <Card className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-slate-600">Tingkat Stres</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Tingkat Stres</label>
             <select
               value={form.stres}
               onChange={(e) => update("stres", e.target.value)}
-              className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+              className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             >
               <option value="rendah">Rendah</option>
               <option value="sedang">Sedang</option>
@@ -140,11 +140,11 @@ export default function SimulasiPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-slate-600">Kategori Berat Badan (BMI)</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Kategori Berat Badan (BMI)</label>
             <select
               value={form.bmi}
               onChange={(e) => update("bmi", e.target.value)}
-              className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+              className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             >
               <option value="normal">Normal</option>
               <option value="berlebih">Berlebih</option>
@@ -153,11 +153,11 @@ export default function SimulasiPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-slate-600">Riwayat Keluarga Diabetes</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Riwayat Keluarga Diabetes</label>
             <select
               value={form.riwayatKeluarga}
               onChange={(e) => update("riwayatKeluarga", e.target.value)}
-              className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+              className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             >
               <option value="tidak">Tidak Ada</option>
               <option value="ya">Ada</option>
@@ -167,7 +167,7 @@ export default function SimulasiPage() {
       </div>
 
       <Card>
-        <h2 className="font-semibold text-slate-700 mb-3">Estimasi Tingkat Risiko</h2>
+        <h2 className="font-semibold text-slate-700 dark:text-slate-300 mb-3">Estimasi Tingkat Risiko</h2>
         <div className="flex items-center gap-6">
           <div className="relative w-28 h-28 shrink-0">
             <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
@@ -189,7 +189,7 @@ export default function SimulasiPage() {
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-xl font-bold text-slate-700">
+              <span className="text-xl font-bold text-slate-700 dark:text-slate-300">
                 <CountUp value={hasil.persen} suffix="%" />
               </span>
             </div>
@@ -204,7 +204,7 @@ export default function SimulasiPage() {
             >
               Risiko {hasil.level}
             </motion.p>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
               {hasil.level === "Rendah" &&
                 "Pertahankan pola hidup sehatmu! Terus jaga makan, olahraga, dan istirahat cukup."}
               {hasil.level === "Sedang" &&

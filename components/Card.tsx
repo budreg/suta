@@ -1,7 +1,7 @@
 export default function Card({ children, className = "" }) {
   return (
     <div
-      className={`bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ${className}`}
+      className={`bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-5 ${className}`}
     >
       {children}
     </div>

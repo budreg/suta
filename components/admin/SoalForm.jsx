@@ -53,20 +53,20 @@ export default function SoalForm({ initialData, soalId }) {
     <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl">
       <Card className="space-y-4">
         <div>
-          <label className="text-sm font-medium text-slate-600">Pertanyaan</label>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Pertanyaan</label>
           <textarea
             required
             rows={2}
             value={form.pertanyaan}
             onChange={(e) => setForm({ ...form, pertanyaan: e.target.value })}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             placeholder="Tulis pertanyaan kuis di sini..."
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">Pilihan Jawaban</label>
-          <p className="text-xs text-slate-400 mb-2">Klik radio button di sebelah pilihan yang benar.</p>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Pilihan Jawaban</label>
+          <p className="text-xs text-slate-400 dark:text-slate-500 mb-2">Klik radio button di sebelah pilihan yang benar.</p>
           <div className="space-y-2">
             {form.pilihan.map((p, idx) => (
               <div key={idx} className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function SoalForm({ initialData, soalId }) {
                   required
                   value={p}
                   onChange={(e) => updatePilihan(idx, e.target.value)}
-                  className="flex-1 border border-slate-200 rounded-lg px-3 py-2"
+                  className="flex-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
                   placeholder={`Pilihan ${idx + 1}`}
                 />
               </div>
@@ -90,18 +90,18 @@ export default function SoalForm({ initialData, soalId }) {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">
-            Penjelasan Jawaban <span className="text-xs text-slate-400">(muncul setelah user menjawab)</span>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            Penjelasan Jawaban <span className="text-xs text-slate-400 dark:text-slate-500">(muncul setelah user menjawab)</span>
           </label>
           <textarea
             rows={2}
             value={form.penjelasan}
             onChange={(e) => setForm({ ...form, penjelasan: e.target.value })}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
           />
         </div>
 
-        <label className="flex items-center gap-2 text-sm text-slate-600">
+        <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
           <input
             type="checkbox"
             checked={form.aktif}
@@ -124,7 +124,7 @@ export default function SoalForm({ initialData, soalId }) {
         <button
           type="button"
           onClick={() => router.push("/admin/kuis")}
-          className="px-5 py-2.5 rounded-xl font-medium text-slate-500 hover:bg-slate-100"
+          className="px-5 py-2.5 rounded-xl font-medium text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:bg-slate-700"
         >
           Batal
         </button>

@@ -59,16 +59,16 @@ export default function Home() {
   ];
 
   if (authLoading || loading) {
-    return <p className="text-center text-slate-400 py-16">Memuat...</p>;
+    return <p className="text-center text-slate-400 dark:text-slate-500 py-16">Memuat...</p>;
   }
 
   return (
     <div className="space-y-8">
       <motion.section initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
           Halo, {nama || "Sobat Sehat"}! 👋
         </h1>
-        <p className="text-slate-500 mt-1">
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">
           Belajar, main kuis, catat kebiasaan, dan lihat simulasi dampak gaya hidupmu.
         </p>
       </motion.section>
@@ -85,21 +85,21 @@ export default function Home() {
               <p className={`text-2xl font-bold ${s.color}`}>
                 <CountUp value={s.value} suffix={s.suffix} />
               </p>
-              <p className="text-xs text-slate-500 mt-1">{s.label}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">{s.label}</p>
             </Card>
           </motion.div>
         ))}
       </section>
 
       <section>
-        <h2 className="font-semibold text-slate-700 mb-2">Progress Belajar</h2>
+        <h2 className="font-semibold text-slate-700 dark:text-slate-300 mb-2">Progress Belajar</h2>
         <Card>
           <ProgressBar value={materiSelesai.length} max={totalMateri} />
         </Card>
       </section>
 
       <section>
-        <h2 className="font-semibold text-slate-700 mb-3">Menu Utama</h2>
+        <h2 className="font-semibold text-slate-700 dark:text-slate-300 mb-3">Menu Utama</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {menu.map((m, i) => (
             <motion.div
@@ -116,8 +116,8 @@ export default function Home() {
                         {m.emoji}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800">{m.title}</h3>
-                        <p className="text-sm text-slate-500 mt-0.5">{m.desc}</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-slate-100">{m.title}</h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-0.5">{m.desc}</p>
                       </div>
                     </div>
                   </Card>

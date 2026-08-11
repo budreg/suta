@@ -103,36 +103,36 @@ export default function MateriForm({ initialData, materiId }) {
     <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl">
       <Card className="space-y-4">
         <div>
-          <label className="text-sm font-medium text-slate-600">Judul</label>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Judul</label>
           <input
             required
             value={form.judul}
             onChange={(e) => updateJudul(e.target.value)}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             placeholder="Contoh: Pola Makan Sehat untuk Remaja"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">
-            Slug (URL) {isEdit && <span className="text-xs text-slate-400">— tidak bisa diubah</span>}
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            Slug (URL) {isEdit && <span className="text-xs text-slate-400 dark:text-slate-500">— tidak bisa diubah</span>}
           </label>
           <input
             required
             disabled={isEdit}
             value={form.slug}
             onChange={(e) => setForm({ ...form, slug: slugify(e.target.value) })}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 disabled:bg-slate-50 disabled:text-slate-400"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 disabled:bg-slate-50 dark:bg-slate-800 disabled:text-slate-400 dark:text-slate-500"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-sm font-medium text-slate-600">Kategori</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Kategori</label>
             <select
               value={form.kategori}
               onChange={(e) => setForm({ ...form, kategori: e.target.value })}
-              className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+              className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             >
               {kategoriOptions.map((k) => (
                 <option key={k}>{k}</option>
@@ -140,56 +140,56 @@ export default function MateriForm({ initialData, materiId }) {
             </select>
           </div>
           <div>
-            <label className="text-sm font-medium text-slate-600">Urutan Tampil</label>
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Urutan Tampil</label>
             <input
               type="number"
               value={form.urutan}
               onChange={(e) => setForm({ ...form, urutan: e.target.value })}
-              className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+              className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             />
           </div>
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">Ringkasan Singkat</label>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">Ringkasan Singkat</label>
           <input
             required
             value={form.ringkasan}
             onChange={(e) => setForm({ ...form, ringkasan: e.target.value })}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             placeholder="Muncul di daftar materi, 1 kalimat"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">
-            Isi Materi <span className="text-xs text-slate-400">— pisahkan tiap paragraf dengan baris kosong</span>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            Isi Materi <span className="text-xs text-slate-400 dark:text-slate-500">— pisahkan tiap paragraf dengan baris kosong</span>
           </label>
           <textarea
             required
             rows={8}
             value={form.konten}
             onChange={(e) => setForm({ ...form, konten: e.target.value })}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 font-normal"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 font-normal"
             placeholder={"Paragraf pertama...\n\nParagraf kedua..."}
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">
-            Link Video YouTube <span className="text-xs text-slate-400">(opsional)</span>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            Link Video YouTube <span className="text-xs text-slate-400 dark:text-slate-500">(opsional)</span>
           </label>
           <input
             value={form.video_url}
             onChange={(e) => setForm({ ...form, video_url: e.target.value })}
-            className="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2"
+            className="w-full mt-1 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2"
             placeholder="https://www.youtube.com/watch?v=..."
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-slate-600">
-            Infografis <span className="text-xs text-slate-400">(opsional, format JPG/PNG, maks ±5MB)</span>
+          <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            Infografis <span className="text-xs text-slate-400 dark:text-slate-500">(opsional, format JPG/PNG, maks ±5MB)</span>
           </label>
 
           {form.infografis_url && (
@@ -197,12 +197,12 @@ export default function MateriForm({ initialData, materiId }) {
               <img
                 src={form.infografis_url}
                 alt="Infografis"
-                className="w-full rounded-lg border border-slate-200"
+                className="w-full rounded-lg border border-slate-200 dark:border-slate-700"
               />
               <button
                 type="button"
                 onClick={() => setForm({ ...form, infografis_url: "" })}
-                className="absolute top-2 right-2 bg-white/90 text-rose-600 text-xs font-medium px-2 py-1 rounded-lg shadow hover:bg-white"
+                className="absolute top-2 right-2 bg-white/90 dark:bg-slate-700/90 text-rose-600 text-xs font-medium px-2 py-1 rounded-lg shadow hover:bg-white dark:hover:bg-slate-700"
               >
                 Hapus Gambar
               </button>
@@ -214,7 +214,7 @@ export default function MateriForm({ initialData, materiId }) {
               <span
                 className={`inline-block px-4 py-2 rounded-lg text-sm font-medium border ${
                   uploading
-                    ? "border-slate-200 text-slate-400"
+                    ? "border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500"
                     : "border-emerald-600 text-emerald-700 hover:bg-emerald-50"
                 }`}
               >
@@ -244,7 +244,7 @@ export default function MateriForm({ initialData, materiId }) {
         <button
           type="button"
           onClick={() => router.push("/admin/materi")}
-          className="px-5 py-2.5 rounded-xl font-medium text-slate-500 hover:bg-slate-100"
+          className="px-5 py-2.5 rounded-xl font-medium text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:bg-slate-700"
         >
           Batal
         </button>

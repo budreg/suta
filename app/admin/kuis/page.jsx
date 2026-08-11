@@ -29,12 +29,12 @@ export default function AdminKuisList() {
     muat();
   }
 
-  if (loading) return <p className="text-slate-400 text-sm">Memuat...</p>;
+  if (loading) return <p className="text-slate-400 dark:text-slate-500 text-sm">Memuat...</p>;
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500">
           {list.filter((s) => s.aktif).length} aktif dari {list.length} soal
         </p>
         <Link
@@ -47,14 +47,14 @@ export default function AdminKuisList() {
 
       <div className="space-y-2">
         {list.length === 0 && (
-          <p className="text-sm text-slate-400 text-center py-8">Belum ada soal.</p>
+          <p className="text-sm text-slate-400 dark:text-slate-500 text-center py-8">Belum ada soal.</p>
         )}
         {list.map((s) => (
           <Card key={s.id} className={!s.aktif ? "opacity-50" : ""}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="font-medium text-slate-800">{s.pertanyaan}</p>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="font-medium text-slate-800 dark:text-slate-100">{s.pertanyaan}</p>
+                <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                   Jawaban benar: {s.pilihan[s.jawaban_benar]}
                 </p>
               </div>
@@ -63,7 +63,7 @@ export default function AdminKuisList() {
                   onClick={() => toggleAktif(s.id, s.aktif)}
                   className={`text-xs font-medium px-2.5 py-1.5 rounded-lg ${
                     s.aktif
-                      ? "text-slate-500 hover:bg-slate-100"
+                      ? "text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:bg-slate-700"
                       : "text-emerald-600 hover:bg-emerald-50"
                   }`}
                 >

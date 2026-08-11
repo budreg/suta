@@ -27,14 +27,14 @@ export default function AdminLayout({ children }) {
   }, [user, authLoading, router]);
 
   if (status === "checking") {
-    return <p className="text-center text-slate-400 py-16">Memeriksa akses...</p>;
+    return <p className="text-center text-slate-400 dark:text-slate-500 py-16">Memeriksa akses...</p>;
   }
 
   if (status === "denied") {
     return (
       <div className="text-center py-16 space-y-2">
         <div className="text-4xl">🔒</div>
-        <p className="text-slate-600 font-medium">Halaman ini khusus admin.</p>
+        <p className="text-slate-600 dark:text-slate-300 font-medium">Halaman ini khusus admin.</p>
         <Link href="/" className="text-emerald-600 text-sm font-medium">
           ← Kembali ke beranda
         </Link>
@@ -52,11 +52,11 @@ export default function AdminLayout({ children }) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">⚙️ Admin Panel</h1>
-        <p className="text-slate-500 text-sm mt-1">Kelola konten materi dan soal kuis.</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">⚙️ Admin Panel</h1>
+        <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 text-sm mt-1">Kelola konten materi dan soal kuis.</p>
       </div>
 
-      <div className="flex gap-2 border-b border-slate-200">
+      <div className="flex gap-2 border-b border-slate-200 dark:border-slate-700">
         {tabs.map((t) => {
           const active = pathname === t.href;
           return (
@@ -66,7 +66,7 @@ export default function AdminLayout({ children }) {
               className={`px-3 py-2 text-sm font-medium border-b-2 -mb-px ${
                 active
                   ? "border-emerald-600 text-emerald-700"
-                  : "border-transparent text-slate-500 hover:text-slate-700"
+                  : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
               }`}
             >
               {t.label}
