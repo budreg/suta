@@ -180,14 +180,14 @@ export default function KuisPage() {
             </motion.h2>
             <div className="mt-4 space-y-2">
               {soalAktif.pilihan.map((p, idx) => {
-                let style = "border-slate-200 dark:border-slate-700 hover:border-emerald-300";
+                let style = "border-slate-200 dark:border-slate-700 hover:border-emerald-300 text-slate-700 dark:text-slate-200";
                 if (showPenjelasan) {
                   if (idx === soalAktif.jawaban_benar) {
-                    style = "border-emerald-500 bg-emerald-50";
+                    style = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200";
                   } else if (idx === pilihanTerpilih) {
-                    style = "border-rose-400 bg-rose-50";
+                    style = "border-rose-400 bg-rose-50 dark:bg-rose-950/40 text-rose-900 dark:text-rose-200";
                   } else {
-                    style = "border-slate-200 dark:border-slate-700 opacity-60";
+                    style = "border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 opacity-60";
                   }
                 }
                 const isCorrectAnswer = showPenjelasan && idx === soalAktif.jawaban_benar;
