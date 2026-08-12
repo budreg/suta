@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Card from "@/components/Card";
 import Confetti from "@/components/Confetti";
+import TopicAnimation from "@/components/TopicAnimation";
 import { useAuth } from "@/lib/AuthContext";
 import { getMateriBySlug, getMateriSelesai, tandaiMateriSelesai } from "@/lib/db";
 import { getYoutubeThumbnail, getYoutubeWatchUrl } from "@/lib/youtube";
@@ -63,6 +64,8 @@ export default function MateriDetail() {
         </span>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{materi.judul}</h1>
       </div>
+
+      <TopicAnimation slug={materi.slug} />
 
       {materi.video_url && (
         <Card>
