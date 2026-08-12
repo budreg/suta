@@ -1,9 +1,13 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 /**
  * Animasi 2D edukatif berbasis SVG + framer-motion (Versi Pro & Immersive).
  * Dioptimalkan dengan transisi mulus, visual berdinding kaca, dan detail biologis akurat.
+ *
+ * Diperbarui: Penempatan teks yang lebih baik, label yang lebih jelas,
+ * dan animasi Manajemen Stres yang ditingkatkan dengan instruksi visual yang lebih kuat.
  */
 
 const loop = (duration, extra = {}) => ({
@@ -33,7 +37,7 @@ function PenyebabDMScene() {
       </defs>
 
       <rect x="10" y="20" width="300" height="65" rx="16" fill="url(#bloodStream)" stroke="#fca5a5" strokeWidth="1.5" />
-      <text x="25" y="42" fontSize="10" fill="#991b1b" fontWeight="700" letterSpacing="0.3">
+      <text x="160" y="42" fontSize="10" fill="#991b1b" fontWeight="700" letterSpacing="0.3" textAnchor="middle">
         ALIRAN DARAH (Glukosa Tinggi)
       </text>
 
@@ -127,20 +131,20 @@ function PolaMakanScene() {
       <line x1="160" y1="100" x2="224" y2="100" stroke="#ffffff" strokeWidth="2.5" />
 
       {/* Label Keterangan Interaktif */}
-      <motion.g animate={{ y: [0, -3, 0] }} transition={loop(3)}>
+      <g>
         <rect x="14" y="20" width="76" height="22" rx="6" fill="#15803d" />
-        <text x="52" y="34" fontSize="9" fill="#fff" fontWeight="700" textAnchor="middle">50% Sayur & Buah</text>
-      </motion.g>
+        <text x="52" y="34" fontSize="9" fill="#fff" fontWeight="700" textAnchor="middle">Sayur & Buah</text>
+      </g>
 
-      <motion.g animate={{ y: [0, -3, 0] }} transition={loop(3, { delay: 0.5 })}>
+      <g>
         <rect x="232" y="65" width="74" height="22" rx="6" fill="#b45309" />
-        <text x="269" y="79" fontSize="9" fill="#fff" fontWeight="700" textAnchor="middle">25% Karbohidrat</text>
-      </motion.g>
+        <text x="269" y="79" fontSize="9" fill="#fff" fontWeight="700" textAnchor="middle">Karbohidrat</text>
+      </g>
 
-      <motion.g animate={{ y: [0, -3, 0] }} transition={loop(3, { delay: 1 })}>
+      <g>
         <rect x="232" y="115" width="74" height="22" rx="6" fill="#991b1b" />
-        <text x="269" y="129" fontSize="9" fill="#fff" fontWeight="700" textAnchor="middle">25% Protein</text>
-      </motion.g>
+        <text x="269" y="129" fontSize="9" fill="#fff" fontWeight="700" textAnchor="middle">Protein</text>
+      </g>
     </svg>
   );
 }
@@ -206,71 +210,114 @@ function AktivitasFisikScene() {
 
 /* ---------- 4. Manajemen Stres: Sinkronisasi Pernapasan & Ketenangan Gelombang ---------- */
 function ManajemenStresScene() {
+  const breathCycle = 6; // detik per siklus (3 taras, 3 hembus)
+  
   return (
     <svg viewBox="0 0 320 180" className="w-full h-full drop-shadow-sm">
-      {/* Lingkaran Pernapasan Utama (Inhale / Exhale) */}
-      <motion.circle
-        cx="160"
-        cy="85"
-        r="38"
-        fill="#8b5cf6"
-        opacity="0.25"
-        animate={{ r: [30, 55, 30], opacity: [0.2, 0.45, 0.2] }}
-        transition={loop(5)}
-      />
-      <motion.circle
-        cx="160"
-        cy="85"
-        r="24"
-        fill="#7c3aed"
-        animate={{ r: [20, 38, 20] }}
-        transition={loop(5)}
-      />
-      <motion.text
-        x="160"
-        y="89"
-        textAnchor="middle"
-        fontSize="10"
-        fill="#fff"
-        fontWeight="700"
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={loop(5)}
-      >
-        Napas
-      </motion.text>
+      <defs>
+        <clipPath id="circleClip">
+          <circle cx="160" cy="75" r="50" />
+        </clipPath>
+      </defs>
 
-      {/* Transisi Gelombang Stres (Merah) ke Tenang (Hijau) */}
-      <g transform="translate(0, 130)">
-        <text x="160" y="-8" textAnchor="middle" fontSize="9" fill="#475569" fontWeight="600">
+      {/* Lingkaran Pernapasan Utama (Inhale / Exhale) dengan Feedback Warna */}
+      <circle cx="160" cy="75" r="50" fill="#f4f4f5" stroke="#e4e4e7" strokeWidth="2" />
+      
+      {/* Gelombang Cairan dalam Lingkaran */}
+      <g clipPath="url(#circleClip)">
+        <motion.path
+          d="M 110 125 L 210 125 L 210 100 Q 185 95 160 100 T 110 100 Z"
+          fill="#c4b5fd"
+          animate={{
+            y: [-15, -45, -15],
+            fill: ["#d8b4fe", "#a78bfa", "#d8b4fe"]
+          }}
+          transition={loop(breathCycle)}
+        />
+      </g>
+      
+      {/* Kontur Luar yang Mengembang/Mengempis */}
+      <motion.circle
+        cx="160"
+        cy="75"
+        r="35"
+        stroke="#8b5cf6"
+        strokeWidth="4"
+        fill="none"
+        animate={{ r: [32, 48, 32], opacity: [0.6, 0.2, 0.6] }}
+        transition={loop(breathCycle)}
+      />
+
+      {/* Teks Instruksi Napas Terpusat */}
+      <g transform="translate(160, 75)">
+        <AnimatePresence mode="wait">
+          <motion.text
+            key="inhale"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.5 }}
+            textAnchor="middle"
+            fontSize="14"
+            fill="#5b21b6"
+            fontWeight="800"
+            animate={{ opacity: [0, 1, 1, 0] }}
+            transition={{ duration: breathCycle, times: [0, 0.1, 0.5, 0.6], repeat: Infinity, ease: "easeInOut" }}
+          >
+            Tarik Napas
+          </motion.text>
+          
+          <motion.text
+            key="exhale"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.5 }}
+            textAnchor="middle"
+            y="2"
+            fontSize="14"
+            fill="#4c1d95"
+            fontWeight="800"
+            animate={{ opacity: [0, 1, 1, 0] }}
+            transition={{ duration: breathCycle, times: [0.6, 0.7, 0.9, 1], repeat: Infinity, ease: "easeInOut" }}
+          >
+            Buang Napas
+          </motion.text>
+        </AnimatePresence>
+      </g>
+
+      {/* Gelombang Sistem Saraf Menjadi Tenang */}
+      <g transform="translate(0, 135)">
+        <text x="160" y="-12" textAnchor="middle" fontSize="10" fill="#475569" fontWeight="700">
           Stabilisasi Sistem Saraf & Penurunan Kortisol
         </text>
         
-        {/* Gelombang Stres */}
+        {/* Gelombang Stres (Sisi Kiri) */}
         <motion.path
-          d="M 20 15 Q 40 5 60 15 T 100 15 T 140 15"
+          d="M 20 20 Q 35 2 50 20 T 80 20 T 110 20 L 145 20"
           fill="none"
           stroke="#f43f5e"
-          strokeWidth="2.5"
+          strokeWidth="3"
           strokeLinecap="round"
           animate={{
             d: [
-              "M 20 15 Q 35 2 50 15 T 80 15 T 110 15",
-              "M 20 15 Q 35 22 50 15 T 80 15 T 110 15",
-              "M 20 15 Q 35 2 50 15 T 80 15 T 110 15"
+              "M 20 20 Q 35 2 50 20 T 80 20 T 110 20 L 145 20",
+              "M 20 20 Q 35 38 50 20 T 80 20 T 110 20 L 145 20",
+              "M 20 20 Q 35 2 50 20 T 80 20 T 110 20 L 145 20"
             ]
           }}
           transition={loop(3)}
         />
         
-        {/* Titik Transisi / Panah */}
-        <line x1="148" y1="5" x2="172" y2="5" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="3 3" />
+        {/* Panah Transisi */}
+        <line x1="148" y1="20" x2="172" y2="20" stroke="#cbd5e1" strokeWidth="2.5" strokeDasharray="4 4" />
 
-        {/* Gelombang Tenang */}
+        {/* Gelombang Tenang (Sisi Kanan) */}
         <path
-          d="M 180 15 Q 210 12 240 15 T 300 15"
+          d="M 175 20 L 210 20 Q 240 16 270 20 T 300 20"
           fill="none"
           stroke="#10b981"
-          strokeWidth="2.5"
+          strokeWidth="3"
           strokeLinecap="round"
         />
       </g>
