@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           </AuthProvider>
         </ThemeProvider>
         <footer className="text-center text-xs text-slate-400 dark:text-slate-500 py-6">
-          DiabetesEdu — Aplikasi edukasi digital, bukan pengganti konsultasi medis.
+          DiabetesEdu Aplikasi edukasi digital, bukan pengganti konsultasi medis.
         </footer>
       </body>
     </html>
