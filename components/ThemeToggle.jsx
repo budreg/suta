@@ -9,18 +9,48 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="w-9 h-9" />; // placeholder biar layout tidak "lompat"
+    return <div className="w-14 h-8" />; // placeholder biar layout tidak "lompat"
   }
 
   const isDark = theme === "dark";
 
   return (
     <button
+      type="button"
+      role="switch"
+      aria-checked={isDark}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Ganti tema terang/gelap"
-      className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition"
+      className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full
+        transition-colors duration-300 ease-in-out
+        focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:ring-indigo-400 dark:focus-visible:ring-offset-slate-900
+        ${isDark ? "bg-indigo-600" : "bg-slate-300"}`}
     >
-      {isDark ? "☀️" : "🌙"}
+      {/* Ikon latar (matahari & bulan) */}
+      <span className="absolute left-1.5 flex items-center justify-center text-[11px] transition-opacity duration-300"
+        style={{ opacity: isDark ? 0 : 1 }}
+      >
+        ☀️
+      </span>
+      <span className="absolute right-1.5 flex items-center justify-center text-[11px] transition-opacity duration-300"
+        style={{ opacity: isDark ? 1 : 0 }}
+      >
+        🌙
+      </span>
+
+      {/* Knob yang bergeser */}
+      <span
+        className={`inline-flex h-6 w-6 transform items-center justify-center rounded-full
+          bg-white shadow-md transition-transform duration-300 ease-in-out
+          ${isDark ? "translate-x-7" : "translate-x-1"}`}
+      >
+        <span className="text-[11px] transition-transform duration-300"
+          style={{ transform: isDark ? "rotate(360deg)" : "rotate(0deg)" }}
+        >
+          {isDark ? "🌙" : "☀️"}
+        </span>
+      </span>
     </button>
   );
 }
