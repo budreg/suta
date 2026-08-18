@@ -9,7 +9,7 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="w-14 h-8" />; // placeholder biar layout tidak "lompat"
+    return <div className="w-10 h-[22px]" />; // placeholder biar layout tidak "lompat"
   }
 
   const isDark = theme === "dark";
@@ -21,19 +21,19 @@ export default function ThemeToggle() {
       aria-checked={isDark}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Ganti tema terang/gelap"
-      className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full
+      className={`relative inline-flex h-[22px] w-10 shrink-0 items-center rounded-full
         transition-colors duration-300 ease-in-out
         focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
         focus-visible:ring-indigo-400 dark:focus-visible:ring-offset-slate-900
         ${isDark ? "bg-indigo-600" : "bg-slate-300"}`}
     >
       {/* Ikon latar (matahari & bulan) */}
-      <span className="absolute left-1.5 flex items-center justify-center text-[11px] transition-opacity duration-300"
+      <span className="absolute left-1 flex items-center justify-center text-[9px] transition-opacity duration-300"
         style={{ opacity: isDark ? 0 : 1 }}
       >
         ☀️
       </span>
-      <span className="absolute right-1.5 flex items-center justify-center text-[11px] transition-opacity duration-300"
+      <span className="absolute right-1 flex items-center justify-center text-[9px] transition-opacity duration-300"
         style={{ opacity: isDark ? 1 : 0 }}
       >
         🌙
@@ -41,11 +41,11 @@ export default function ThemeToggle() {
 
       {/* Knob yang bergeser */}
       <span
-        className={`inline-flex h-6 w-6 transform items-center justify-center rounded-full
+        className={`inline-flex h-[18px] w-[18px] transform items-center justify-center rounded-full
           bg-white shadow-md transition-transform duration-300 ease-in-out
-          ${isDark ? "translate-x-7" : "translate-x-1"}`}
+          ${isDark ? "translate-x-[19px]" : "translate-x-[2px]"}`}
       >
-        <span className="text-[11px] transition-transform duration-300"
+        <span className="text-[9px] transition-transform duration-300"
           style={{ transform: isDark ? "rotate(360deg)" : "rotate(0deg)" }}
         >
           {isDark ? "🌙" : "☀️"}
